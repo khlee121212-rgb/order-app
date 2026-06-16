@@ -311,3 +311,226 @@
   padding: 12px;
   font-size: 15px;
 }
+
+/* ===== 관리자 화면 공통 ===== */
+.admin-section {
+  margin-bottom: 28px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.admin-section__title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+/* ===== 상태 배지 ===== */
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge--normal {
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.badge--warning {
+  background: #fffbeb;
+  color: #b45309;
+}
+
+.badge--sold-out {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.badge--info {
+  background: var(--blue-light);
+  color: var(--blue-dark);
+}
+
+/* ===== 대시보드 ===== */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 600px) {
+  .dashboard {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.dashboard__card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg);
+}
+
+.dashboard__label {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.dashboard__value {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--blue);
+}
+
+/* ===== 재고 현황 ===== */
+.inventory {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 600px) {
+  .inventory {
+    grid-template-columns: 1fr;
+  }
+}
+
+.inventory__card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inventory__head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.inventory__name {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.inventory__status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.inventory__stock {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.inventory__controls {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.qty-btn {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--blue);
+  background: var(--surface);
+  color: var(--blue);
+  border-radius: 6px;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.qty-btn:hover {
+  background: var(--blue);
+  color: #fff;
+}
+
+.qty-btn:disabled {
+  border-color: var(--border);
+  color: #cbd5e1;
+  background: var(--surface);
+  cursor: not-allowed;
+}
+
+/* ===== 주문 현황 ===== */
+.orders {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.orders__empty {
+  color: var(--text-muted);
+  font-size: 15px;
+}
+
+.orders__row {
+  display: grid;
+  grid-template-columns: 120px 1fr 110px 80px 110px;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0;
+  border-top: 1px solid var(--border);
+}
+
+.orders__row:first-child {
+  border-top: none;
+}
+
+.orders__time {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.orders__menu {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 15px;
+}
+
+.orders__price {
+  font-weight: 600;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.orders__action {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 600px) {
+  .orders__row {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .orders__price {
+    text-align: left;
+  }
+
+  .orders__action {
+    justify-content: flex-start;
+  }
+}
