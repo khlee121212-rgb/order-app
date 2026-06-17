@@ -2,9 +2,12 @@ import { formatDateTime, formatPrice } from '../utils/format';
 import { ORDER_STATUS, STATUS_LABEL } from '../data/admin';
 
 function formatItem(item) {
+  const options = item.options || [];
   const optionText =
-    item.options.length > 0 ? `(${item.options.join(', ')})` : '';
-  return `${item.name}${optionText} x ${item.quantity}`;
+    options.length > 0
+      ? `(${options.map((opt) => opt.name).join(', ')})`
+      : '';
+  return `${item.menuName}${optionText} x ${item.quantity}`;
 }
 
 const STATUS_BADGE = {
@@ -38,7 +41,9 @@ function Orders({ orders, onAdvance }) {
                 ))}
               </span>
 
-              <span className="orders__price">{formatPrice(order.total)}</span>
+              <span className="orders__price">
+                {formatPrice(order.totalAmount)}
+              </span>
 
               <span className={`badge ${STATUS_BADGE[order.status]}`}>
                 {STATUS_LABEL[order.status]}

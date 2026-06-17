@@ -119,6 +119,7 @@
 }
 
 .menu-card__image {
+  position: relative;
   aspect-ratio: 4 / 3;
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -153,9 +154,32 @@
     );
 }
 
+.menu-card__soldout {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+}
+
 .menu-card__name {
   font-size: 17px;
   font-weight: 700;
+}
+
+/* ===== 로딩/에러 상태 ===== */
+.state-text {
+  padding: 24px 0;
+  color: var(--text-muted);
+  font-size: 15px;
+}
+
+.state-text--error {
+  color: #b91c1c;
 }
 
 .menu-card__price {

@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { OPTIONS } from '../data/menu';
 import { formatPrice } from '../utils/format';
 
 function MenuCard({ menu, onAdd }) {
   const [selected, setSelected] = useState([]);
   const [imageError, setImageError] = useState(false);
+
+  const options = menu.options || [];
+  const soldOut = menu.stock <= 0;
 
   function toggleOption(optionId) {
     setSelected((prev) =>
@@ -15,7 +17,7 @@ function MenuCard({ menu, onAdd }) {
   }
 
   function handleAdd() {
-    const chosen = OPTIONS.filter((opt) => selected.includes(opt.id));
+    const chosen = options.filter((opt) => selected.includes(opt.id));
     onAdd(menu, chosen);
     setSelected([]);
   }
@@ -23,15 +25,16 @@ function MenuCard({ menu, onAdd }) {
   return (
     <article className="menu-card">
       <div className="menu-card__image">
-        {menu.image && !imageError ? (
+        {menu.imageUrl && !imageError ? (
           <img
-            src={menu.image}
+            src={menu.imageUrl}
             alt={menu.name}
             onError={() => setImageError(true)}
           />
         ) : (
           <span className="menu-card__placeholder" aria-hidden="true" />
         )}
+        {soldOut && <span className="menu-card__soldout">품절</span>}
       </div>
 
       <h3 className="menu-card__name">{menu.name}</h3>
@@ -39,24 +42,30 @@ function MenuCard({ menu, onAdd }) {
       <p className="menu-card__desc">{menu.description}</p>
 
       <ul className="menu-card__options">
-        {OPTIONS.map((opt) => (
+        {options.map((opt) => (
           <li key={opt.id}>
             <label className="menu-card__option">
               <input
                 type="checkbox"
                 checked={selected.includes(opt.id)}
                 onChange={() => toggleOption(opt.id)}
+                disabled={soldOut}
               />
               <span>
-                {opt.label} (+{opt.price.toLocaleString('ko-KR')}원)
+                {opt.label ?? opt.name} (+{opt.price.toLocaleString('ko-KR')}원)
               </span>
             </label>
           </li>
         ))}
       </ul>
 
-      <button type="button" className="btn btn--primary menu-card__add" onClick={handleAdd}>
-        담기
+      <button
+        type="button"
+        className="btn btn--primary menu-card__add"
+        onClick={handleAdd}
+        disabled={soldOut}
+      >
+        {soldOut ? '품절' : '담기'}
       </button>
     </article>
   );

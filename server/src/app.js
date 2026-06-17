@@ -1,5 +1,7 @@
 import express from 'express';
 import cors from 'cors';
+import menusRouter from './routes/menus.js';
+import ordersRouter from './routes/orders.js';
 
 export function createApp() {
   const app = express();
@@ -25,7 +27,8 @@ export function createApp() {
     res.json({ status: 'ok', timestamp: new Date().toISOString() });
   });
 
-  // TODO: 메뉴/주문 라우터 연결 (예: app.use('/api/menus', menusRouter))
+  app.use('/api/menus', menusRouter);
+  app.use('/api/orders', ordersRouter);
 
   // 404 처리
   app.use((req, res) => {
