@@ -2,10 +2,20 @@ import pg from 'pg';
 
 const { Pool } = pg;
 
+// 값이 postgres 연결 문자열(postgresql://...)인지 판별
+function isConnectionString(value) {
+  return typeof value === 'string' && /^postgres(ql)?:\/\//i.test(value.trim());
+}
+
 // PostgreSQL 커넥션 풀
-// - DATABASE_URL(연결 문자열)이 있으면 우선 사용 (예: Render). 원격 연결은 SSL 필요.
+// - 연결 문자열(DATABASE_URL, 또는 실수로 DB_HOST에 들어간 URL)이 있으면 우선 사용 (예: Render).
+//   원격 연결은 SSL 필요.
 // - 없으면 개별 환경 변수(로컬 개발)로 연결.
-const connectionString = process.env.DATABASE_URL;
+const connectionString = isConnectionString(process.env.DATABASE_URL)
+  ? process.env.DATABASE_URL.trim()
+  : isConnectionString(process.env.DB_HOST)
+    ? process.env.DB_HOST.trim()
+    : null;
 
 export const pool = connectionString
   ? new Pool({
