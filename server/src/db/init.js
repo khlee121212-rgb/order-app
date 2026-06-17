@@ -11,24 +11,21 @@ const SEED_MENUS = [
     name: '아메리카노(ICE)',
     description: '깔끔하고 시원한 아이스 아메리카노',
     price: 4000,
-    image_url:
-      'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=400&q=80',
+    image_url: '/images/americano-ice.jpg',
     stock: 10,
   },
   {
     name: '아메리카노(HOT)',
     description: '진하고 따뜻한 핫 아메리카노',
     price: 4000,
-    image_url:
-      'https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=400&q=80',
+    image_url: '/images/americano-hot.jpg',
     stock: 10,
   },
   {
     name: '카페라떼',
     description: '부드러운 우유와 에스프레소의 조화',
     price: 5000,
-    image_url:
-      'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&q=80',
+    image_url: '/images/caffe-latte.jpg',
     stock: 7,
   },
   {
