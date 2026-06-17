@@ -1,5 +1,5 @@
 const API_BASE =
-  import.meta.env.VITE_API_URL ?? 'http://localhost:4000/api';
+  import.meta.env.VITE_API_URL ?? 'https://order-app-backend-c7et.onrender.com';
 
 async function request(path, options = {}) {
   const res = await fetch(`${API_BASE}${path}`, {
