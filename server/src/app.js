@@ -6,9 +6,16 @@ import ordersRouter from './routes/orders.js';
 export function createApp() {
   const app = express();
 
+  // CLIENT_ORIGIN: 쉼표로 여러 출처 지정 가능. 끝 슬래시는 정규화.
+  // 미설정 시에는 모든 출처 허용(인증/쿠키 미사용 학습용 앱).
+  const allowedOrigins = (process.env.CLIENT_ORIGIN || '')
+    .split(',')
+    .map((o) => o.trim().replace(/\/+$/, ''))
+    .filter(Boolean);
+
   app.use(
     cors({
-      origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173',
+      origin: allowedOrigins.length > 0 ? allowedOrigins : true,
     })
   );
   app.use(express.json());
