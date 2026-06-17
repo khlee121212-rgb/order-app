@@ -1,0 +1,36 @@
+# 의존성
+node_modules/
+
+# 환경 변수 (비밀번호 등 민감 정보 포함)
+.env
+.env.*
+!.env.example
+
+# 로그
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# 런타임/캐시
+pids/
+*.pid
+*.seed
+.cache/
+coverage/
+.nyc_output/
+
+# 빌드 산출물
+dist/
+build/
+
+# OS 생성 파일
+.DS_Store
+Thumbs.db
+
+# 에디터/IDE
+.vscode/
+.idea/
+*.swp
